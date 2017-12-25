@@ -1,19 +1,20 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-import Home from '../components/Home.vue'
+import Home from '../components/Home';
 
-import Create from '../components/article/Create.vue'
-import Edit from '../components/article/Edit.vue'
+import Create from '../components/article/Create';
+import Edit from '../components/article/Edit';
 
-import Register from '../components/users/Register.vue'
-import Settings from '../components/users/Settings.vue'
-import Profile from '../components/users/Profile.vue'
-import Login from '../components/users/Login.vue'
+import Register from '../components/users/Register';
+import Settings from '../components/users/Settings';
+import Profile from '../components/users/Profile';
+import Login from '../components/users/Login';
 
 Vue.use(Router);
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -51,5 +52,4 @@ export default new Router({
       component: Settings,
     },
   ],
-  mode: 'history'
 });

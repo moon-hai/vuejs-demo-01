@@ -7,15 +7,15 @@
 </template>
 
 <script>
-  import Header from './components/shared/Header.vue'
-  import Footer from './components/shared/Footer.vue'
+  import Header from './components/shared/Header';
+  import Footer from './components/shared/Footer';
 
   export default {
     name: 'app',
     components: {
       appHeader: Header,
       appFooter: Footer,
-    }
+    },
   };
 </script>
 
