@@ -1,5 +1,5 @@
 <template>
-  <h1>THIS IS CREATE PAGE</h1>
+  <h1>THIS IS ARTICLEs PAGE</h1>
 </template>
 
 <script>
