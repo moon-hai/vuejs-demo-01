@@ -1,9 +1,28 @@
 <template>
-  <h1>THIS IS ARTICLE PAGE</h1>
+  <!-- <app-article v-for="article in getAllArticle"></app-article> -->
+  <div>
+    <app-article v-for="article in getListArticles" :article="article"></app-article>
+  </div>
+
+
 </template>
 
 <script>
+  import Article from './Article';
 
+  export default {
+    created() {
+      this.$store.dispatch('fetchArticles');
+    },
+    computed: {
+      getListArticles() {
+        return this.$store.getters.getListArticles;
+      }
+    },
+    components: {
+      appArticle: Article,
+    },
+  };
 </script>
 
 <style>

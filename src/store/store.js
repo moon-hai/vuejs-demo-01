@@ -1,13 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import axios from 'axios'
 
-import user from './modules/user'
+import article from './modules/article'
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   modules: {
-    user
+    article
   }
 });
