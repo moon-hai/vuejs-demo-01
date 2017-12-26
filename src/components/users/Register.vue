@@ -8,23 +8,35 @@
             <a href="#">Have an account?</a>
           </p>
 
-  <!--         <ul class="error-messages">
-            <li>That email is already taken</li>
-          </ul> -->
+          <div v-if="errors">
+            <ul class="error-messages" >
+              <li v-for="(v, k) in errors">{{ k }} {{ v.toString() }}</li>
+            </ul>
+          </div>
 
-          <form>
+          <form @submit.prevent="onSubmit">
             <fieldset class="form-group">
-              <input class="form-control form-control-lg" type="text" placeholder="Your Name">
+              <input
+                class="form-control form-control-lg"
+                type="text"
+                placeholder="Your Name"
+                v-model="username">
             </fieldset>
             <fieldset class="form-group">
-              <input class="form-control form-control-lg" type="text" placeholder="Email">
+              <input
+                class="form-control form-control-lg"
+                type="text"
+                placeholder="Email"
+                v-model="email">
             </fieldset>
             <fieldset class="form-group">
-              <input class="form-control form-control-lg" type="password" placeholder="Password">
+              <input
+                class="form-control form-control-lg"
+                type="password"
+                placeholder="Password"
+                v-model="password">
             </fieldset>
-            <button class="btn btn-lg btn-primary pull-xs-right">
-              Sign up
-            </button>
+            <button class="btn btn-lg btn-primary pull-xs-right">Sign up</button>
           </form>
         </div>
       </div>
@@ -33,7 +45,41 @@
 </template>
 
 <script>
-
+  export default {
+    data() {
+      return {
+        username: '',
+        email: '',
+        password: '',
+      }
+    },
+    methods: {
+      onSubmit() {
+        const userData = {
+          user: {
+            username: this.username,
+            email: this.email,
+            password: this.password,
+          }
+        }
+        console.log(userData);
+        this.$store.dispatch('signup', userData);
+      }
+    },
+    computed: {
+      errors() {
+        return this.$store.getters.errors;
+      },
+      clearForm() {
+        if (!this.errors) {
+          this.username = '';
+          this.email = '';
+          this.password = '';
+          alert('You have signup successfully');
+        }
+      }
+    }
+  };
 </script>
 
 <style>
