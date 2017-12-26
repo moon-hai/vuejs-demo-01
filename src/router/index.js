@@ -5,6 +5,7 @@ import Home from '../components/Home';
 
 import Create from '../components/article/Create';
 import Edit from '../components/article/Edit';
+import DetailArticle from '../components/article/DetailArticle';
 
 import Register from '../components/users/Register';
 import Settings from '../components/users/Settings';
@@ -18,37 +19,42 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Home',
+      name: 'home',
       component: Home,
     },
     {
+      path: '/detail-article/:slug',
+      name: 'detailArticle',
+      component: DetailArticle,
+    },
+    {
       path: '/create-article',
-      name: 'Create',
+      name: 'create',
       component: Create,
     },
     {
       path: '/edit-article/:slug',
-      name: 'Edit',
+      name: 'edit',
       component: Edit,
     },
     {
       path: '/register',
-      name: 'Register',
+      name: 'register',
       component: Register,
     },
     {
       path: '/login',
-      name: 'Login',
+      name: 'login',
       component: Login,
     },
     {
       path: '/profile/:id',
-      name: 'Profile',
+      name: 'profile',
       component: Profile,
     },
     {
       path: '/setting',
-      name: 'Settings',
+      name: 'settings',
       component: Settings,
     },
   ],

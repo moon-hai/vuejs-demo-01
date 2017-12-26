@@ -19,6 +19,6 @@
   };
 </script>
 
-<style>
-
+<style lang="scss">
+  @import './assets/css/style'
 </style>
