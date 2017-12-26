@@ -16,7 +16,7 @@ Vue.filter('formatDate', function(value) {
 });
 
 axios.defaults.baseURL = 'https://conduit.productionready.io/api';
-axios.defaults.headers.Accepts = 'application/json';
+axios.defaults.headers.common['Content-Type'] = 'application/json';
 
 Vue.config.productionTip = false;
 /* eslint-disable no-new */
