@@ -38,15 +38,12 @@ const actions = {
     })
     .then(res => {
       console.log(res.data.user)
-      commit('authUser', {
-        Token: res.data.user.token,
-        userId: res.data.user.id
-      })
+      commit('authUser', res.data.user)
       const now = new Date()
       const expirationDate = new Date(now.getTime() + 10800 * 1000)
       localStorage.setItem('token', res.data.user.token)
       localStorage.setItem('userId', res.data.user.id)
-      localStorage.setItem('expirationTime', 10800)
+      localStorage.setItem('expirationDate', expirationDate)
       dispatch('setLogoutTimer', 10800)
     })
     .catch(e => {
@@ -67,7 +64,8 @@ const actions = {
       const expirationDate = new Date(now.getTime() + 10800 * 1000)
       localStorage.setItem('token', res.data.user.token)
       localStorage.setItem('userId', res.data.user.id)
-      localStorage.setItem('expirationTime', 10800)
+      localStorage.setItem('expirationDate', expirationDate)
+      commit('authUser', res.data.user)
       dispatch('setLogoutTimer', 10800)
     })
     .catch(e => {
@@ -87,6 +85,8 @@ const actions = {
       return
     }
     const userId = localStorage.getItem('userId')
+    console.log(token)
+    console.log(userId)
     commit('authUser', {
       token: token,
       userId: userId
