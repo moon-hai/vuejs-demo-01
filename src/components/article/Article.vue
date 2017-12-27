@@ -18,7 +18,7 @@
         <h1>{{ article.title }}</h1>
         <p>{{ article.body }}</p>
         <span>Read more...</span>
-      </router-link>
+    </router-link>
   </div>
 </template>
 
