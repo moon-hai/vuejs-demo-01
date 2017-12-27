@@ -16,9 +16,12 @@
       appHeader: Header,
       appFooter: Footer,
     },
+    // created() {
+
+    // }
   };
 </script>
 
 <style lang="scss">
-  @import './assets/css/style'
+  @import './assets/css/style';
 </style>

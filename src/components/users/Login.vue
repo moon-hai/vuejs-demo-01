@@ -42,8 +42,8 @@
     data() {
       return {
         email: '',
-        password: ''
-      }
+        password: '',
+      };
     },
     methods: {
       onSubmit() {
@@ -51,11 +51,11 @@
           user: {
             email: this.email,
             password: this.password,
-          }
-        }
+          },
+        };
         console.log(userData);
         this.$store.dispatch('login', userData);
-      }
+      },
     },
     computed: {
       errors() {
@@ -67,7 +67,7 @@
           this.password = '';
           alert('You have login successfully');
         }
-      }
-    }
-  }
+      },
+    },
+  };
 </script>

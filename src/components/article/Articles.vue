@@ -1,7 +1,7 @@
 <template>
   <!-- <app-article v-for="article in getAllArticle"></app-article> -->
   <div>
-    <app-article v-for="article in getListArticles" :article="article"></app-article>
+    <app-article v-for="article in getListArticles" :key="article.id" :article="article"></app-article>
   </div>
 
 
@@ -17,7 +17,7 @@
     computed: {
       getListArticles() {
         return this.$store.getters.getListArticles;
-      }
+      },
     },
     components: {
       appArticle: Article,
