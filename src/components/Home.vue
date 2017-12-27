@@ -24,15 +24,7 @@
         <div class="col-md-3">
           <div class="sidebar">
             <p>Popular Tags</p>
-            <div class="tag-list">
-              <a href="#" class="label label-pill label-default">programming</a>
-              <a href="#" class="label label-pill label-default">javascript</a>
-              <a href="#" class="label label-pill label-default">angularjs</a>
-              <a href="#" class="label label-pill label-default">react</a>
-              <a href="#" class="label label-pill label-default">mean</a>
-              <a href="#" class="label label-pill label-default">node</a>
-              <a href="#" class="label label-pill label-default">rails</a>
-            </div>
+            <app-tags></app-tags>
           </div>
         </div>
       </div>
@@ -41,11 +33,13 @@
 </template>
 
 <script>
+  import Tags from './tag/Tags.vue';
   import Articles from './article/Articles.vue';
 
   export default {
     components: {
       appArticles: Articles,
+      appTags: Tags,
     },
     created() {
       this.$store.dispatch('tryAutoLogin')

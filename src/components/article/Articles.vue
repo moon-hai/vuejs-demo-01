@@ -1,10 +1,7 @@
 <template>
-  <!-- <app-article v-for="article in getAllArticle"></app-article> -->
   <div>
     <app-article v-for="article in getListArticles" :key="article.id" :article="article"></app-article>
   </div>
-
-
 </template>
 
 <script>
