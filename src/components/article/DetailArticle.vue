@@ -109,7 +109,7 @@
     data() {
       return {
         slug: this.$route.params.slug,
-      }
+      };
     },
     computed: {
       article() {
@@ -118,8 +118,8 @@
     },
     created() {
       this.$store.dispatch('fetchSingleArticle', this.slug);
-    }
-  }
+    },
+  };
 </script>
 
 <style>

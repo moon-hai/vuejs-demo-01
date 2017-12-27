@@ -51,7 +51,7 @@
         username: '',
         email: '',
         password: '',
-      }
+      };
     },
     methods: {
       onSubmit() {
@@ -60,11 +60,11 @@
             username: this.username,
             email: this.email,
             password: this.password,
-          }
-        }
+          },
+        };
         console.log(userData);
         this.$store.dispatch('signup', userData);
-      }
+      },
     },
     computed: {
       errors() {
@@ -77,8 +77,8 @@
           this.password = '';
           alert('You have signup successfully');
         }
-      }
-    }
+      },
+    },
   };
 </script>
 
