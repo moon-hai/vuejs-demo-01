@@ -7,6 +7,7 @@ const state = {
   token: null,
   userId: null,
   user: null,
+  author: null,
   errors: null,
   success: false
 }
@@ -18,6 +19,9 @@ const mutations = {
   },
   storeUser (state, user) {
     state.user = user
+  },
+  storeAuthor (state, author) {
+    state.author = author
   },
   errorUser (state, err) {
     state.errors = err
@@ -124,6 +128,19 @@ const actions = {
       console.log(e.response.data)
     })
   },
+  authorProfile({ commit }, username) {
+    axios({
+      method: 'get',
+      url: '/profiles/' + username
+    })
+    .then(res => {
+      console.log(res.data.profile)
+      commit('storeAuthor', res.data.profile)
+    })
+    .catch(e => {
+      console.log(e.response.data)
+    })
+  },
   tryAutoLogin ({ commit }) {
     const token = localStorage.getItem('token')
     if(!token) {
@@ -155,6 +172,9 @@ const actions = {
 const getters = {
   user (state) {
     return state.user
+  },
+  author (state) {
+    return state.author
   },
   isAuthenticated (state) {
     return state.token !== null
