@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  import Article from './Article';
+  import Article from '../article/Article';
 
   export default {
     props: ['username'],
