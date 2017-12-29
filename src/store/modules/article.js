@@ -49,7 +49,20 @@ const actions = {
     .catch(e => {
       console.log(e);
     })
-  }
+  },
+  fetchOwnerArticles({ commit }, username) {
+    axios({
+      method: 'get',
+      url: '/articles?author=' + username
+    })
+    .then(res => {
+      console.log(res.data)
+      commit('storeArticles', res.data.articles);
+    })
+    .catch(e => {
+      console.log(e.data)
+    })
+  },
 };
 
 const getters = {

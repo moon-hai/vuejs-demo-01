@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="full-width">
     <app-article v-for="article in getListArticles" :key="article.id" :article="article"></app-article>
   </div>
 </template>
@@ -8,8 +8,9 @@
   import Article from './Article';
 
   export default {
+    props: ['username'],
     created() {
-      this.$store.dispatch('fetchArticles');
+      this.$store.dispatch('fetchOwnerArticles', this.username);
     },
     computed: {
       getListArticles() {
@@ -21,3 +22,9 @@
     },
   };
 </script>
+
+<style scoped>
+  .full-width {
+    width: 100%;
+  }
+</style>
