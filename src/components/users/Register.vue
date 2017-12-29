@@ -5,7 +5,7 @@
         <div class="col-md-6 col-md-offset-3 col-xs-12">
           <h1 class="text-xs-center">Register</h1>
           <p class="text-xs-center">
-            <a href="#">Have an account?</a>
+            <router-link :to="{name: 'login'}"><a>Have an account?</a></router-link>
           </p>
 
           <div v-if="errors">
@@ -70,14 +70,18 @@
       errors() {
         return this.$store.getters.errors;
       },
-      clearForm() {
-        if (!this.errors) {
+      success() {
+        if(this.$store.getters.success) {
           this.username = '';
           this.email = '';
           this.password = '';
-          alert('You have signup successfully');
+          alert('You have successfully registered!');
         }
-      },
+      }
+    },
+    beforeRouteLeave(to, from, next) {
+      this.$store.dispatch('resetState');
+      next();
     },
   };
 </script>

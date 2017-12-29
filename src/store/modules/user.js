@@ -1,10 +1,14 @@
 import axios from 'axios'
+import router from '../../router'
+
+const authToken = 'Token ' + localStorage.getItem('token')
 
 const state = {
   token: null,
   userId: null,
   user: null,
-  errors: null
+  errors: null,
+  success: false
 }
 
 const mutations = {
@@ -21,6 +25,13 @@ const mutations = {
   clearAuthData (state) {
     state.token = null
     state.userId = null
+  },
+  successCall (state) {
+    state.success = true
+  },
+  clearState (state) {
+    state.success = false
+    state.errors = null
   }
 }
 
@@ -34,7 +45,7 @@ const actions = {
     axios({
       method: 'post',
       url: '/users',
-      data: authData
+      data: authData,
     })
     .then(res => {
       console.log(res.data.user)
@@ -44,7 +55,9 @@ const actions = {
       localStorage.setItem('token', res.data.user.token)
       localStorage.setItem('userId', res.data.user.id)
       localStorage.setItem('expirationDate', expirationDate)
+      commit('successCall')
       dispatch('setLogoutTimer', 10800)
+      router.push('/profile')
     })
     .catch(e => {
       if(e.response.status === 422) {
@@ -56,7 +69,7 @@ const actions = {
     axios({
       method: 'post',
       url: '/users/login',
-      data: authData
+      data: authData,
     })
     .then(res => {
       console.log(res.data.user)
@@ -65,13 +78,50 @@ const actions = {
       localStorage.setItem('token', res.data.user.token)
       localStorage.setItem('userId', res.data.user.id)
       localStorage.setItem('expirationDate', expirationDate)
+      commit('successCall')
       commit('authUser', res.data.user)
       dispatch('setLogoutTimer', 10800)
+      router.push('/profile')
     })
     .catch(e => {
       if (e.response.status === 422) {
         commit('errorUser', e.response.data.errors);
       }
+    })
+  },
+  update ({ commit }, authData) {
+    axios({
+      method: 'put',
+      url: '/user',
+      data: authData,
+      headers: {
+        'Authorization': authToken,
+      },
+    })
+    .then(res => {
+      commit('successCall')
+      router.push('/profile')
+    })
+    .catch(e => {
+      if (e.response.status === 422) {
+        commit('errorUser', e.response.data.errors);
+      }
+    })
+  },
+  currentUser({ commit }) {
+    axios({
+      method: 'get',
+      url: '/user',
+      headers: {
+        'Authorization': authToken,
+      }
+    })
+    .then(res => {
+      commit('storeUser', res.data.user)
+      console.log(res);
+    })
+    .catch(e => {
+      console.log(e.response.data)
     })
   },
   tryAutoLogin ({ commit }) {
@@ -85,8 +135,6 @@ const actions = {
       return
     }
     const userId = localStorage.getItem('userId')
-    console.log(token)
-    console.log(userId)
     commit('authUser', {
       token: token,
       userId: userId
@@ -97,6 +145,10 @@ const actions = {
     localStorage.removeItem('expirationDate')
     localStorage.removeItem('token')
     localStorage.removeItem('userId')
+    router.push('/login')
+  },
+  resetState({ commit }) {
+    commit('clearState')
   }
 }
 
@@ -107,8 +159,11 @@ const getters = {
   isAuthenticated (state) {
     return state.token !== null
   },
-  errors() {
+  errors(state) {
     return state.errors
+  },
+  success(state) {
+    return state.success
   }
 }
 

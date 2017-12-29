@@ -17,7 +17,7 @@ Vue.filter('formatDate', function(value) {
 
 axios.defaults.baseURL = 'https://conduit.productionready.io/api';
 axios.defaults.headers.common['Content-Type'] = 'application/json';
-axios.defaults.headers.common['Authorization'] = 'Token ' + localStorage.getItem('token');
+// axios.defaults.headers.common['Authorization'] = 'Token ' + localStorage.getItem('token');
 
 Vue.config.productionTip = false;
 /* eslint-disable no-new */
