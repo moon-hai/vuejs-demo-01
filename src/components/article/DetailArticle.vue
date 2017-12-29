@@ -4,9 +4,18 @@
       <div class="container">
         <h1>{{ article.title }}</h1>
         <div class="article-meta">
-          <a href=""><img :src="article.author.image" /></a>
+          <router-link
+            :to="{ name: 'authorProfile', params: { username: article.author.username } }"
+            tag="a">
+            <img :src="article.author.image" />
+          </router-link>
           <div class="info">
-            <a href="" class="author">{{ article.author.username }}</a>
+            <router-link
+              :to="{ name: 'authorProfile', params: { username: article.author.username } }"
+              tag="a"
+              class="author">
+              {{ article.author.username }}
+            </router-link>
             <span class="date">{{ article.createdAt | formatDate }}</span>
           </div>
           <button class="btn btn-sm btn-outline-secondary">
@@ -36,9 +45,19 @@
       <hr />
       <div class="article-actions">
         <div class="article-meta">
-          <a href="profile.html"><img :src="article.author.image" /></a>
+          <router-link
+            :to="{ name: 'authorProfile', params: { username: article.author.username } }"
+            tag="a">
+            <img :src="article.author.image">
+          </router-link>
           <div class="info">
             <a href="" class="author">Eric Simons{{ article.author.username }}</a>
+            <router-link
+              :to="{ name: 'authorProfile', params: { username: article.author.username } }"
+              tag="a"
+              class="author">
+              {{ article.author.username }}
+            </router-link>
             <span class="date">{{ article.createdAt | formatDate }}</span>
           </div>
 

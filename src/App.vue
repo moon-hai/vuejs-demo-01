@@ -16,9 +16,9 @@
       appHeader: Header,
       appFooter: Footer,
     },
-    // created() {
-
-    // }
+   created() {
+      this.$store.dispatch('tryAutoLogin')
+    }
   };
 </script>
 

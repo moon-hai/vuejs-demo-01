@@ -40,9 +40,6 @@
     components: {
       appArticles: Articles,
       appTags: Tags,
-    },
-    created() {
-      this.$store.dispatch('tryAutoLogin')
     }
   };
 </script>

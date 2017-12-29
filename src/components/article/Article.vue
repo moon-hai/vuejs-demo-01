@@ -1,9 +1,18 @@
 <template>
   <div class="post-preview">
     <div class="post-meta">
-      <a href="profile.html"><img :src="article.author.image" /></a>
+      <router-link
+      :to="{ name: 'authorProfile', params: { username: article.author.username } }"
+      tag="a">
+        <img :src="article.author.image" />
+      </router-link>
       <div class="info">
-        <a href="profile.html" class="author">{{ article.author.username }}</a>
+        <router-link
+        :to="{ name: 'authorProfile', params: { username: article.author.username } }"
+        tag="a"
+        class="author">
+          {{ article.author.username }}
+        </router-link>
         <span class="date">{{ article.createdAt | formatDate }}</span>
       </div>
       <button class="btn btn-outline-primary btn-sm pull-xs-right">
@@ -11,7 +20,7 @@
       </button>
     </div>
     <router-link
-      :to="{ name: 'detailArticle', params: {slug:  article.slug} }"
+      :to="{ name: 'detailArticle', params: { slug:  article.slug } }"
       tag="a"
       active-class="active"
       class="preview-link">

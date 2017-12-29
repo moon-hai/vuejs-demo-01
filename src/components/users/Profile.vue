@@ -4,21 +4,14 @@
       <div class="container">
         <div class="row">
           <div class="col-md-10 col-md-offset-1">
-            <img src="http://i.imgur.com/Qr71crq.jpg" class="user-img" />
-            <h4>Eric Simons</h4>
-            <p>
-              Cofounder @GoThinkster, lived in Aol's HQ for a few months, kinda looks like Peeta from the Hunger Games
-            </p>
-            <button class="btn btn-sm btn-outline-secondary action-btn">
-              <i class="ion-plus-round"></i>
-              &nbsp;
-              Follow Eric Simons <span class="counter">(10)</span>
-            </button>
+            <img :src= "user.image" class="user-img" />
+            <h4>{{ user.username }}</h4>
+            <p>{{ user.bio }}</p>
           </div>
         </div>
       </div>
     </div>
-    <div class="container">
+    <!-- <div class="container">
       <div class="row">
         <div class="col-md-10 col-md-offset-1">
           <div class="posts-toggle">
@@ -67,14 +60,19 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
-
+  export default {
+    created() {
+      this.$store.dispatch('currentUser');
+    },
+    computed: {
+      user() {
+        return this.$store.getters.user;
+      }
+    },
+  };
 </script>
-
-<style>
-
-</style>

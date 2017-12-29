@@ -11,6 +11,7 @@ import Register from '../components/users/Register';
 import Settings from '../components/users/Settings';
 import Profile from '../components/users/Profile';
 import Login from '../components/users/Login';
+import AuthorProfile from '../components/users/AuthorProfile';
 
 Vue.use(Router);
 
@@ -41,16 +42,35 @@ export default new Router({
       path: '/register',
       name: 'register',
       component: Register,
+      beforeEnter: (to, from, next) => {
+        if(localStorage.getItem('token')) {
+          next({ path: '/' });
+        } else {
+          next();
+        }
+      }
     },
     {
       path: '/login',
       name: 'login',
       component: Login,
+      beforeEnter: (to, from, next) => {
+        if(localStorage.getItem('token')) {
+          next({ path: '/' });
+        } else {
+          next();
+        }
+      }
+    },
+    {
+      path: '/profile',
+      name: 'profile',
+      component: Profile,
     },
     {
       path: '/profile/:username',
-      name: 'profile',
-      component: Profile,
+      name: 'authorProfile',
+      component: AuthorProfile,
     },
     {
       path: '/setting',
