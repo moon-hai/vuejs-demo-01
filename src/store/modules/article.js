@@ -1,5 +1,7 @@
 import axios from 'axios'
 
+const authToken = 'Token ' + localStorage.getItem('token')
+
 const state = {
   articles: null,
   singleArticle: null,
@@ -63,6 +65,36 @@ const actions = {
       console.log(e.data)
     })
   },
+  createArticle({ commit }, data) {
+    axios({
+      method: 'post',
+      url: '/articles',
+      data: data,
+      headers: {
+        'Authorization': authToken,
+      },
+    })
+    .then(res => {
+      console.log(res);
+    })
+    .catch(e => {
+      console.log(e);
+    })
+  },
+  fetchArticleByTag({ commit }, tag) {
+    axios({
+      method: 'get',
+      url: '/articles?tag='+tag,
+    })
+    .then(res => {
+      const articles = res.data.articles;
+      commit('storeArticles', articles);
+      console.log(articles);
+    })
+    .catch(e => {
+      console.log(e);
+    })
+  }
 };
 
 const getters = {

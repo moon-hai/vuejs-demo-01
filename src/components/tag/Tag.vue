@@ -1,9 +1,10 @@
 <template>
-  <a href="#" class="label label-pill label-default"><span> - </span>{{ tag }}<span> -&nbsp;</span></a>
+  <router-link :to="{name: 'tag', params: {name: tag}}" tag="li">
+    <a class="label label-pill label-default">{{ tag }}<span>  - -  </span></a></router-link>
 </template>
 
 <script>
   export default {
-    props: ['tag'],
+    props: ['tag']
   }
 </script>

@@ -6,6 +6,7 @@ import Home from '../components/Home';
 import Create from '../components/article/Create';
 import Edit from '../components/article/Edit';
 import DetailArticle from '../components/article/DetailArticle';
+import ArticlesByTag from '../components/article/ArticlesByTag'
 
 import Register from '../components/users/Register';
 import Settings from '../components/users/Settings';
@@ -23,6 +24,7 @@ export default new Router({
       name: 'home',
       component: Home,
     },
+
     {
       path: '/detail-article/:slug',
       name: 'detailArticle',
@@ -38,6 +40,13 @@ export default new Router({
       name: 'edit',
       component: Edit,
     },
+
+    {
+      path: '/article/:name',
+      name: 'tag',
+      component: ArticlesByTag
+    },
+
     {
       path: '/register',
       name: 'register',
