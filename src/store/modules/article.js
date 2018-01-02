@@ -30,8 +30,6 @@ const actions = {
         article.id = key;
         articles.push(article);
       }
-      console.log(articles);
-      console.log(articles);
       commit('storeArticles', articles);
     })
     .catch(e => {
@@ -45,7 +43,6 @@ const actions = {
     })
     .then(res => {
       const article = res.data.article;
-      console.log(res);
       commit('storeArticle', article);
     })
     .catch(e => {
@@ -58,7 +55,6 @@ const actions = {
       url: '/articles?author=' + username
     })
     .then(res => {
-      console.log(res.data)
       commit('storeArticles', res.data.articles);
     })
     .catch(e => {
@@ -89,7 +85,6 @@ const actions = {
     .then(res => {
       const articles = res.data.articles;
       commit('storeArticles', articles);
-      console.log(articles);
     })
     .catch(e => {
       console.log(e);
