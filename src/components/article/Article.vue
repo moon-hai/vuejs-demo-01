@@ -39,6 +39,11 @@
         isFavourite: false,
       }
     },
+    // computed: {
+    //   favorites() {
+    //     return this.$store.getters.getFavouriteCount;
+    //   }
+    // },
     methods: {
       favourite() {
         this.isFavourite = !this.isFavourite;
