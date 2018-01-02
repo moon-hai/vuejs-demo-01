@@ -15,7 +15,7 @@
         </router-link>
         <span class="date">{{ article.createdAt | formatDate }}</span>
       </div>
-      <button class="btn btn-outline-primary btn-sm pull-xs-right">
+      <button class="btn btn-outline-primary btn-sm pull-xs-right" @click="favourite()">
         <i class="ion-heart"></i> {{ article.favoritesCount }}
       </button>
     </div>
@@ -34,5 +34,20 @@
 <script>
   export default {
     props: ['article'],
+    data() {
+      return {
+        isFavourite: false,
+      }
+    },
+    methods: {
+      favourite() {
+        this.isFavourite = !this.isFavourite;
+        if (this.isFavourite === true) {
+          this.$store.dispatch('likeArticle', this.article.slug);
+        } else {
+          this.$store.dispatch('unlikeArticle', this.article.slug);
+        }
+      }
+    }
   }
 </script>
