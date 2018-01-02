@@ -1,4 +1,5 @@
 import axios from 'axios'
+import router from '../../router'
 
 const authToken = 'Token ' + localStorage.getItem('token')
 
@@ -72,6 +73,7 @@ const actions = {
     })
     .then(res => {
       console.log(res);
+      router.push('/')
     })
     .catch(e => {
       console.log(e);
@@ -85,6 +87,21 @@ const actions = {
     .then(res => {
       const articles = res.data.articles;
       commit('storeArticles', articles);
+    })
+    .catch(e => {
+      console.log(e);
+    })
+  },
+  deleteArticle({ commit }, data) {
+    axios({
+      method: 'delete',
+      url: '/articles/' + data,
+      headers: {
+        'Authorization': authToken,
+      }
+    })
+    .then(res => {
+      router.push('/profile')
     })
     .catch(e => {
       console.log(e);

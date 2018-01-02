@@ -43,6 +43,7 @@ const actions = {
   setLogoutTimer ({commit}, expirationTime) {
     setTimeout(() => {
       commit('clearAuthData')
+      commit('logout')
     }, expirationTime * 1000)
   },
   signup ({ commit, dispatch }, authData) {

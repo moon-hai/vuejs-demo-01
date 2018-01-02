@@ -51,7 +51,6 @@
             <img :src="article.author.image">
           </router-link>
           <div class="info">
-            <a href="" class="author">Eric Simons{{ article.author.username }}</a>
             <router-link
               :to="{ name: 'authorProfile', params: { username: article.author.username } }"
               tag="a"
@@ -72,6 +71,14 @@
             &nbsp;
             Favorite Post <span class="counter">({{ article.favoritesCount }})</span>
           </button>
+          <div>
+            <button
+              class="btn btn-sm btn-danger"
+              v-if="article.author.username === user.username"
+              @click="deleteArticle"
+              >Delete</button>
+            <button class="btn btn-sm btn-info">Edit</button>
+          </div>
         </div>
       </div>
       <div class="row">
@@ -134,9 +141,17 @@
       article() {
         return this.$store.getters.getArticle;
       },
+      user() {
+        return this.$store.getters.user;
+      }
     },
     created() {
       this.$store.dispatch('fetchSingleArticle', this.slug);
+    },
+    methods: {
+      deleteArticle() {
+        this.$store.dispatch('deleteArticle', this.slug);
+      }
     },
   };
 </script>
