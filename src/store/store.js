@@ -5,6 +5,7 @@ import user from './modules/user'
 import article from './modules/article'
 import tag from './modules/tag'
 import favourite from './modules/favourite'
+import comment from './modules/comment'
 
 Vue.use(Vuex);
 
@@ -13,6 +14,7 @@ export default new Vuex.Store({
     user,
     article,
     tag,
-    favourite
+    favourite,
+    comment
   }
 });

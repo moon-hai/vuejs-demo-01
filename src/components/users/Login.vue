@@ -61,14 +61,6 @@
       errors() {
         return this.$store.getters.errors;
       },
-      success() {
-        if(this.$store.getters.success) {
-          console.log(this.$store.getters.success);
-          this.email = '';
-          this.password = '';
-          alert('You have successfully loged in!');
-        }
-      },
     },
     beforeRouteLeave(to, from, next) {
       this.$store.dispatch('resetState');

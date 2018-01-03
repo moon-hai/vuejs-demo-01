@@ -51,7 +51,6 @@
             <img :src="article.author.image">
           </router-link>
           <div class="info">
-            <a href="" class="author">Eric Simons{{ article.author.username }}</a>
             <router-link
               :to="{ name: 'authorProfile', params: { username: article.author.username } }"
               tag="a"
@@ -72,63 +71,41 @@
             &nbsp;
             Favorite Post <span class="counter">({{ article.favoritesCount }})</span>
           </button>
+          <div>
+            <button
+              class="btn btn-sm btn-danger"
+              v-if="article.author.username === username"
+              @click="deleteArticle"
+              >Delete</button>
+              <router-link
+                :to="{ name: 'edit', params: { slug: slug }}"
+                v-if="article.author.username === username"
+                tag="a"
+                class="btn btn-sm btn-info">
+                Edit
+              </router-link>
+          </div>
         </div>
       </div>
       <div class="row">
-        <div class="col-xs-12 col-md-8 offset-md-2">
-          <form class="card comment-form">
-            <div class="card-block">
-              <textarea class="form-control" placeholder="Write a comment..." rows="3"></textarea>
-            </div>
-            <div class="card-footer">
-              <img src="http://i.imgur.com/Qr71crq.jpg" class="comment-author-img" />
-              <button class="btn btn-sm btn-primary">
-               Post Comment
-              </button>
-            </div>
-          </form>
-          <div class="card">
-            <div class="card-block">
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            </div>
-            <div class="card-footer">
-              <a href="" class="comment-author">
-                <img src="http://i.imgur.com/Qr71crq.jpg" class="comment-author-img" />
-              </a>
-              &nbsp;
-              <a href="" class="comment-author">Jacob Schmidt</a>
-              <span class="date-posted">Dec 29th</span>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-block">
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            </div>
-            <div class="card-footer">
-              <a href="" class="comment-author">
-                <img src="http://i.imgur.com/Qr71crq.jpg" class="comment-author-img" />
-              </a>
-              &nbsp;
-              <a href="" class="comment-author">Jacob Schmidt</a>
-              <span class="date-posted">Dec 29th</span>
-              <span class="mod-options">
-                <i class="ion-edit"></i>
-                <i class="ion-trash-a"></i>
-              </span>
-            </div>
-          </div>
-        </div>
+        <app-comments :article="article"></app-comments>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+  import Comments from '../comment/Comments';
+
   export default {
     data() {
       return {
         slug: this.$route.params.slug,
+        username: localStorage.getItem('username')
       };
+    },
+    components: {
+      appComments: Comments
     },
     computed: {
       article() {
@@ -137,6 +114,11 @@
     },
     created() {
       this.$store.dispatch('fetchSingleArticle', this.slug);
+    },
+    methods: {
+      deleteArticle() {
+        this.$store.dispatch('deleteArticle', this.slug);
+      }
     },
   };
 </script>

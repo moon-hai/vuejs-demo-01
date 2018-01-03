@@ -70,14 +70,6 @@
       errors() {
         return this.$store.getters.errors;
       },
-      success() {
-        if(this.$store.getters.success) {
-          this.username = '';
-          this.email = '';
-          this.password = '';
-          alert('You have successfully registered!');
-        }
-      }
     },
     beforeRouteLeave(to, from, next) {
       this.$store.dispatch('resetState');
