@@ -1,7 +1,7 @@
-import axios from 'axios'
-import article from './article'
+import axios from 'axios';
+import article from './article';
 
-const authToken = 'Token ' + localStorage.getItem('token')
+const authToken = 'Token ' + localStorage.getItem('token');
 
 const state = {
   favouriteCount: null,
@@ -9,12 +9,10 @@ const state = {
 
 const mutations = {
   storeFavorite(state, a) {
-    console.log(state.article.articles)
-    const record = state.article.articles.find(element => element.slug == a.slug);
-    if(record) {
+    const record = state.article.articles.find(element => element.slug === a.slug);
+    if (record) {
       const i = state.article.articles.indexOf(record);
       state.article.articles[i].favoritesCount = a.favoritesCount;
-      console.log(state.article.articles[i]);
     }
   }
 };
@@ -23,13 +21,13 @@ const actions = {
   likeArticle({ commit }, slug) {
     axios({
       method: 'post',
-      url: '/articles/'+slug+'/favorite',
+      url: '/articles/' + slug + '/favorite',
       headers: {
         'Authorization': authToken,
       },
     })
     .then(res => {
-      commit('storeFavorite', res.data.article)
+      commit('storeFavorite', res.data.article);
     })
     .catch(e => {
       console.log(e);
@@ -38,24 +36,24 @@ const actions = {
   unlikeArticle({ commit }, slug) {
     axios({
       method: 'delete',
-      url: '/articles/'+slug+'/favorite',
+      url: '/articles/' + slug + '/favorite',
       headers: {
         'Authorization': authToken,
       },
     })
     .then(res => {
-      commit('storeFavorite', res.data.article)
+      commit('storeFavorite', res.data.article);
     })
     .catch(e => {
       console.log(e)
     })
-  }
+  },
 };
 
 const getters = {
   getFavouriteCount(state) {
     return state.favouriteCount;
-  }
+  },
 };
 
 export default {
@@ -64,6 +62,6 @@ export default {
   actions,
   getters,
   modules: {
-    article
-  }
-}
+    article,
+  },
+};

@@ -101,11 +101,11 @@
     data() {
       return {
         slug: this.$route.params.slug,
-        username: localStorage.getItem('username')
+        username: localStorage.getItem('username'),
       };
     },
     components: {
-      appComments: Comments
+      appComments: Comments,
     },
     computed: {
       article() {
@@ -118,7 +118,7 @@
     methods: {
       deleteArticle() {
         this.$store.dispatch('deleteArticle', this.slug);
-      }
+      },
     },
   };
 </script>

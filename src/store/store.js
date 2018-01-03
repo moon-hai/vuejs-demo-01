@@ -1,11 +1,11 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from 'vue';
+import Vuex from 'vuex';
 
-import user from './modules/user'
-import article from './modules/article'
-import tag from './modules/tag'
-import favourite from './modules/favourite'
-import comment from './modules/comment'
+import user from './modules/user';
+import article from './modules/article';
+import tag from './modules/tag';
+import favourite from './modules/favourite';
+import comment from './modules/comment';
 
 Vue.use(Vuex);
 
@@ -15,6 +15,6 @@ export default new Vuex.Store({
     article,
     tag,
     favourite,
-    comment
-  }
+    comment,
+  },
 });

@@ -34,18 +34,18 @@
     data() {
       return {
         username: this.$route.params.username,
-      }
+      };
     },
     computed: {
       author() {
         return this.$store.getters.author;
-      }
+      },
     },
     created() {
       this.$store.dispatch('authorProfile', this.username);
     },
     components: {
       appArticles: Articles,
-    }
+    },
   };
 </script>

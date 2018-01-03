@@ -62,7 +62,6 @@
             password: this.password,
           },
         };
-        console.log(userData);
         this.$store.dispatch('signup', userData);
       },
     },

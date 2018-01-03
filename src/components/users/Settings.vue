@@ -77,7 +77,6 @@
             bio: this.bio,
           },
         };
-        console.log(userData);
         this.$store.dispatch('update', userData);
       },
     },

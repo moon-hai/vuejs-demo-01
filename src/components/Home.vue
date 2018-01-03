@@ -33,14 +33,14 @@
 </template>
 
 <script>
-  import Tags from './tag/Tags.vue';
-  import Articles from './article/Articles.vue';
+  import Tags from './tag/Tags';
+  import Articles from './article/Articles';
 
   export default {
     components: {
       appArticles: Articles,
       appTags: Tags,
-    }
+    },
   };
 </script>
 

@@ -14,7 +14,7 @@ const mutations = {
     state.comments.push(comment);
   },
   deleteComment(state, id) {
-    const record = state.comments.find(element => element.id == id);
+    const record = state.comments.find(element => element.id === id);
     state.comments.splice(state.comments.indexOf(record), 1);
   }
 };
@@ -30,7 +30,7 @@ const actions = {
       }
     })
     .then(res => {
-      commit('newComment', res.data.comment)
+      commit('newComment', res.data.comment);
     })
     .catch(e => {
       console.log(e)
@@ -42,10 +42,10 @@ const actions = {
       url: '/articles/' + data + '/comments',
       headers: {
         'Authorization': authToken
-      }
+      },
     })
     .then(res => {
-      commit('storeComments', res.data.comments)
+      commit('storeComments', res.data.comments);
     })
     .catch(e => {
       console.log(e)
@@ -57,26 +57,26 @@ const actions = {
       url: '/articles/' + data.slug + '/comments/' + data.id,
       headers: {
         'Authorization': authToken
-      }
+      },
     })
     .then(res => {
-      commit('deleteComment', data.id)
+      commit('deleteComment', data.id);
     })
     .catch(e => {
       console.log(e)
     })
-  }
+  },
 };
 
 const getters = {
   comments(state) {
     return state.comments;
-  }
+  },
 };
 
 export default {
   actions,
   state,
   mutations,
-  getters
-}
+  getters,
+};
