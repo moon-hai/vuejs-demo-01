@@ -13,7 +13,7 @@
             <fieldset class="form-group">
               <input class="form-control" type="text" placeholder="Enter tags" v-model="tags" @keydown="insertTag()">
               <div class="tag-list">
-                <span class="label label-pill label-default" v-for="tag in tagList"><i class="ion-close-round"></i>{{ tag }}  </span>
+                <span class="label label-pill label-default" v-for="tag in tagList"><i class="ion-close-round"></i>{{ tag }}&nbsp;</span>
               </div>
             </fieldset>
             <button class="btn btn-lg btn-primary pull-xs-right" @click.prevent="createPost()">
@@ -46,7 +46,6 @@
           list.push(tag[t]);
         }
         this.tagList = list;
-        console.log(this.tagList);
       },
       createPost() {
         var data = {
