@@ -5,19 +5,19 @@
 </template>
 
 <script>
-  import Tag from './Tag.vue'
+  import Tag from './Tag';
 
   export default {
     computed: {
       tags() {
         return this.$store.getters.getTags;
-      }
+      },
     },
     created() {
       this.$store.dispatch('fetchTags');
     },
     components: {
       appTag: Tag,
-    }
-  }
+    },
+  };
 </script>

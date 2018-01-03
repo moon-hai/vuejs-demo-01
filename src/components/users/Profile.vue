@@ -29,10 +29,10 @@
     computed: {
       user() {
         return this.$store.getters.user;
-      }
+      },
     },
     components: {
       appArticles: Articles,
-    }
+    },
   };
 </script>

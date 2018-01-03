@@ -6,7 +6,7 @@ import Home from '../components/Home';
 import Create from '../components/article/Create';
 import Edit from '../components/article/Edit';
 import DetailArticle from '../components/article/DetailArticle';
-import ArticlesByTag from '../components/article/ArticlesByTag'
+import ArticlesByTag from '../components/article/ArticlesByTag';
 
 import Register from '../components/users/Register';
 import Settings from '../components/users/Settings';
@@ -44,7 +44,7 @@ export default new Router({
     {
       path: '/article/:name',
       name: 'tag',
-      component: ArticlesByTag
+      component: ArticlesByTag,
     },
 
     {
@@ -52,24 +52,24 @@ export default new Router({
       name: 'register',
       component: Register,
       beforeEnter: (to, from, next) => {
-        if(localStorage.getItem('token')) {
+        if (localStorage.getItem('token')) {
           next({ path: '/' });
         } else {
           next();
         }
-      }
+      },
     },
     {
       path: '/login',
       name: 'login',
       component: Login,
       beforeEnter: (to, from, next) => {
-        if(localStorage.getItem('token')) {
+        if (localStorage.getItem('token')) {
           next({ path: '/' });
         } else {
           next();
         }
-      }
+      },
     },
     {
       path: '/profile',

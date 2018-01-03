@@ -29,20 +29,20 @@
     data() {
       return {
         body: '',
-        authorImage: localStorage.getItem('userImage')
-      }
+        authorImage: localStorage.getItem('userImage'),
+      };
     },
     methods: {
       onSubmit() {
-        var data = {
+        const data = {
           slug: this.article.slug,
           comment: {
-            body: this.body
-          }
-        }
+            body: this.body,
+          },
+        };
         this.$store.dispatch('createComment', data);
         this.body = '';
-      }
+      },
     },
     components: {
       appComment: Comment,
@@ -50,10 +50,10 @@
     computed: {
       getComments() {
         return this.$store.getters.comments;
-      }
+      },
     },
     created() {
       this.$store.dispatch('fetchComments', this.article.slug);
     },
-  }
+  };
 </script>

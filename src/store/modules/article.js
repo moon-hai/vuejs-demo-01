@@ -1,7 +1,7 @@
-import axios from 'axios'
-import router from '../../router'
+import axios from 'axios';
+import router from '../../router';
 
-const authToken = 'Token ' + localStorage.getItem('token')
+const authToken = 'Token ' + localStorage.getItem('token');
 
 const state = {
   articles: null,
@@ -40,7 +40,7 @@ const actions = {
   fetchSingleArticle({ commit }, slug) {
     axios({
       method: 'get',
-      url: '/articles/'+slug,
+      url: '/articles/' + slug,
     })
     .then(res => {
       const article = res.data.article;
@@ -98,7 +98,7 @@ const actions = {
   fetchArticleByTag({ commit }, tag) {
     axios({
       method: 'get',
-      url: '/articles?tag='+tag,
+      url: '/articles?tag=' + tag,
     })
     .then(res => {
       const articles = res.data.articles;

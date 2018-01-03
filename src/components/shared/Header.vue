@@ -56,15 +56,15 @@
   export default {
     computed: {
       auth() {
-        return this.$store.getters.isAuthenticated
-      }
+        return this.$store.getters.isAuthenticated;
+      },
     },
     methods: {
       onLogout() {
-        this.$store.dispatch('logout')
-      }
-    }
-  }
+        this.$store.dispatch('logout');
+      },
+    },
+  };
 </script>
 
 

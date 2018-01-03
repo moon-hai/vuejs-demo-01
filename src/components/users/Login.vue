@@ -53,7 +53,6 @@
             password: this.password,
           },
         };
-        console.log(userData);
         this.$store.dispatch('login', userData);
       },
     },
@@ -65,6 +64,6 @@
     beforeRouteLeave(to, from, next) {
       this.$store.dispatch('resetState');
       next();
-    }
+    },
   };
 </script>

@@ -29,21 +29,21 @@
           postTitle: '',
           postContent: '',
         },
-      }
+      };
     },
     methods: {
       editPost() {
-        var data = {
+        const data = {
           slug: this.slug,
           article: {
             title: this.post.postTitle,
             description: this.post.postTitle,
             body: this.post.postContent,
-            tagList: this.tagList
-          }
-        }
+            tagList: this.tagList,
+          },
+        };
         this.$store.dispatch('editArticle', data);
-      }
-    }
-  }
+      },
+    },
+  };
 </script>

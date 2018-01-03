@@ -25,17 +25,17 @@
     props: ['comment'],
     data() {
       return {
-        currentUser: localStorage.getItem('username')
-      }
+        currentUser: localStorage.getItem('username'),
+      };
     },
     methods: {
       deleteComment() {
-        var data = {
+        const data = {
           slug: this.$route.params.slug,
-          id: this.comment.id
-        }
+          id: this.comment.id,
+        };
         this.$store.dispatch('deleteComment', data);
-      }
-    }
-  }
+      },
+    },
+  };
 </script>
