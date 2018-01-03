@@ -8,8 +8,7 @@ const state = {
   userId: null,
   user: null,
   author: null,
-  errors: null,
-  success: false
+  errors: null
 }
 
 const mutations = {
@@ -29,9 +28,6 @@ const mutations = {
   clearAuthData (state) {
     state.token = null
     state.userId = null
-  },
-  successCall (state) {
-    state.success = true
   },
   clearState (state) {
     state.success = false
@@ -59,8 +55,9 @@ const actions = {
       const expirationDate = new Date(now.getTime() + 10800 * 1000)
       localStorage.setItem('token', res.data.user.token)
       localStorage.setItem('userId', res.data.user.id)
+      localStorage.setItem('username', res.data.user.username)
+      localStorage.setItem('userImage', res.data.user.image)
       localStorage.setItem('expirationDate', expirationDate)
-      commit('successCall')
       dispatch('setLogoutTimer', 10800)
       router.push('/profile')
     })
@@ -82,8 +79,9 @@ const actions = {
       const expirationDate = new Date(now.getTime() + 10800 * 1000)
       localStorage.setItem('token', res.data.user.token)
       localStorage.setItem('userId', res.data.user.id)
+      localStorage.setItem('username', res.data.user.username)
+      localStorage.setItem('userImage', res.data.user.image)
       localStorage.setItem('expirationDate', expirationDate)
-      commit('successCall')
       commit('authUser', res.data.user)
       dispatch('setLogoutTimer', 10800)
       router.push('/profile')
@@ -104,7 +102,6 @@ const actions = {
       },
     })
     .then(res => {
-      commit('successCall')
       router.push('/profile')
     })
     .catch(e => {
@@ -163,6 +160,7 @@ const actions = {
     localStorage.removeItem('expirationDate')
     localStorage.removeItem('token')
     localStorage.removeItem('userId')
+    localStorage.removeItem('username')
     router.push('/login')
   },
   resetState({ commit }) {

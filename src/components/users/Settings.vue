@@ -85,16 +85,6 @@
       errors() {
         return this.$store.getters.errors;
       },
-      sucess() {
-        if (this.$store.getters.success) {
-          this.email = '';
-          this.username = '';
-          this.password = '';
-          this.image = '';
-          this.bio = '';
-          alert('You have successfully updated your profile!');
-        };
-      }
     },
     beforeRouteLeave(to, from, next) {
       this.$store.dispatch('resetState');

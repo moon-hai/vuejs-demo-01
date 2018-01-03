@@ -79,6 +79,22 @@ const actions = {
       console.log(e);
     })
   },
+  editArticle({ commit }, data) {
+    axios({
+      method: 'put',
+      url: '/articles/' + data.slug,
+      data: data.article,
+      headers: {
+        'Authorization': authToken,
+      },
+    })
+    .then(res => {
+      router.push('/')
+    })
+    .catch(e => {
+      console.log(e);
+    })
+  },
   fetchArticleByTag({ commit }, tag) {
     axios({
       method: 'get',
